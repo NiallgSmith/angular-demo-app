@@ -10,8 +10,11 @@
   </head>
   <body>
     <div ng-controller="StudentController">
+    <div class="row">
 
-      <button ng-click='showResults()'>{{ results ? 'Hide' : 'Show' }} Results</button>
+      <button class="col-xs-6" ng-hide="results"  ng-click='showResults()'>{{ results ? 'Hide' : 'Show' }} Results</button>
+      <button class="col-xs-12" ng-show="results" ng-click='showResults()'>{{ results ? 'Hide' : 'Show' }} Results</button>
+    </div>
 
       <div ng-show="results">
 
@@ -29,7 +32,7 @@
 
           <h3>Full list</h3>
           <ul>
-            <li ng-repeat="subject in student.subjects | filter : {name : query} | orderBy: customOrder">
+            <li ng-repeat="subject in student.subjects | filter : {name : query} | orderBy: customOrder | filter : aGradeFilter">
               result for: <strong>{{subject.name}}</strong> = <em>{{subject.marks}}</em>
             </li>
           </ul>
